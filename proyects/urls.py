@@ -1,10 +1,15 @@
 from rest_framework import routers
-from django.urls import path
+from django.shortcuts import render
+from django.urls import path, include
 from .api import ProjectViewSet
-from .views import home 
+
 router = routers.DefaultRouter()
 router.register('api/projects', ProjectViewSet, 'projects')
 
-urlpatterns = router.urls + [
-    path('', home, name='home'),  
+def index(request):
+    return render(request, 'index.html')
+
+urlpatterns = [
+    path('', index),  # Renderiza el index.html en la raíz
+    path('api/projects', include(router.urls)),  # Incluye las rutas del API bajo /api/
 ]
