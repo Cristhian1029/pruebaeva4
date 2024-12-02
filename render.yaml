@@ -1,0 +1,18 @@
+# Exported from Render on 2024-12-02T02:59:56Z
+services:
+- type: web
+  name: pruebaeva4
+  runtime: python
+  repo: https://github.com/Cristhian1029/pruebaeva4
+  plan: free
+  envVars:
+  - key: PYTHON_VERSION
+    sync: false
+  - key: SECRET_KEY
+    sync: false
+  - key: DATABASE_URL
+    sync: false
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: gunicorn pruebasimplecrud.wsgi:application
+version: "1"
